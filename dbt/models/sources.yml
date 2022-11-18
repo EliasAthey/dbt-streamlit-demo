@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw data available in analytics database.
+    database: analytics
+    schema: raw
+    tables:
+      - name: openaddress
+        description: Addresses in the United States.
+      - name: mvmt_smpl_v2
+        description: (Sample of) daily movement (measured by mobile devices) at a lat-lon grain.

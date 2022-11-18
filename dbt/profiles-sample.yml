@@ -1,0 +1,13 @@
+dbt_demo:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: # snoflake account; <this>.snowflakecomputing.com
+      user: #username
+      password: # pw for your dbt user
+      role: #role
+      warehouse: #wh
+      database: #db
+      schema: #schema
+      threads: 1

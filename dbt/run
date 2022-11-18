@@ -1,0 +1,1 @@
+dbt run --profiles-dir . --project-dir .
