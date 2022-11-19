@@ -18,20 +18,29 @@ connection = {
 }
 
 sesh = Session.builder.configs(connection).create()
-wh = sesh.get_current_warehouse()
 acc = sesh.get_current_account()
-print(wh)
-print(acc)
+wh = sesh.get_current_warehouse()
+db = sesh.get_current_database()
+schema = sesh.get_current_schema()
+role = sesh.get_current_role()
 
 st.write('# Hello! Welcome to my app')
-st.write(f'Im using the {wh} warehouse in the {acc} snowflake account')
-pc = st.text_input(f'Please enter a postal code: ')
+st.write(f'I\'m connected to the {acc} snowflake account.')
+st.write(f'By default, I\'m using the {wh} warehouse, the {role} role,\
+  and the {db}.{schema} schema.')
 
-addr = sesh.table('stg_address')
-us_addr = addr.filter(col('country') == 'us' & col('postalcode') == pc).to_pandas()
+tables = sesh.sql(f'select TABLE_NAME from {db}.information_schema.views where TABLE_SCHEMA = \'DBT\'')
+st.write(f'Here are some tables to use: {tables.collect()}')
 
-st.table(us_addr)
-st.map(us_addr)
+insecure_sql = st.text_area(f'Please enter some SQL: ')
+print(insecure_sql)
+if len(insecure_sql) > 0:
+  print(insecure_sql)
+  with st.spinner(f'Running sql...'):
+    res = sesh.sql(f'{insecure_sql}').collect()
+    st.dataframe(res)
+
+# st.map(us_addr)
 
 # # input
 # usr_val = st.slider('Slide Me!',1,10)
@@ -42,3 +51,4 @@ st.map(us_addr)
 # # viz
 # st.write(f'## Your Value: {usr_val}')
 # st.bar_chart(data)
+print('done')

@@ -6,7 +6,7 @@ sources:
     database: analytics
     schema: raw
     tables:
-      - name: openaddress
-        description: Addresses in the United States.
-      - name: mvmt_smpl_v2
-        description: (Sample of) daily movement (measured by mobile devices) at a lat-lon grain.
+      - name: zip_to_cbg
+        description: (Bay Area sample of) Lookup from zip code to census block group.
+      - name: cbg_total_pop
+        description: 2020 US Census data for estimate total population by census block group.
