@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: census
+    description: Free marketplace dataset from SafeGraph - US Open Census Data & Neighborhood Insights. Provides census block group results.
+    database: US_Open_Census_Data__Neighborhood_Insights__Free_Dataset
+    schema: PUBLIC
+    quoting:
+      database: true
+      schema: true
+      identifier: true
+    tables:
+      - name: 2019_METADATA_CBG_FIELD_DESCRIPTIONS
+        description: Field definitions for 2019 tables.
+      - name: "2020_METADATA_CBG_FIELD_DESCRIPTIONS"
+        description:  Field definitions for 2020 tables.
+      - name: "2019_CBG_B01"
+        description: B01 values for the year 2019.
+      - name: "2020_CBG_B01"
+        description: B01 values for the year 2020.
+  - name: postal
+    description: San Francisco sample of postal codes and attributes (including census block group).
+    database: "ZIP_Plus_4s__San_Francisco_CA_Area_EVALUATION"
+    schema: PUBLIC
+    quoting:
+      database: true
+      schema: true
+      identifier: true
+    tables:
+      - name: ZIP_PLUS_4S_USA_SAMPLE
+        description: San Francisco sample of postal codes and attributes (including census block group).

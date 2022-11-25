@@ -2,7 +2,7 @@ name: 'trial_nov'
 version: '1.0.0'
 config-version: 2
 
-profile: 'trial_nov'
+profile: 'nov_trial'
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -16,6 +16,9 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+packages:
+  - package: dbt-labs/dbt_utils
+    version: 0.9.5
 
 models:
   trial_nov: 
