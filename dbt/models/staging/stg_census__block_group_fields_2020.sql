@@ -22,6 +22,5 @@ renamed as (
             )), ' ', '_'), '_') as field_name
     from
         source
-    where TABLE_ID like 'B01%'
 )
 select * from renamed
