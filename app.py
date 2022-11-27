@@ -25,33 +25,41 @@ db = sesh.get_current_database()
 schema = sesh.get_current_schema()
 role = sesh.get_current_role()
 
+st.set_page_config(layout="wide")
+
 st.write('# San Francisco Census')
 st.write('## 2019 and 2020')
 st.write(f'FYI...I\'m connected to the {acc} snowflake account.\
   By default, I\'m using the {wh} warehouse, the {role} role,\
   and the {db}.{schema} schema.')
 
-# get data
+# data to use
 data = sesh.table('san_francisco_census')
 
-# spinners are great for long operations
-with st.spinner(f'Getting us census data for San Francisco...'):
+# spinners are great for long operations (like fetching all data)
+with st.spinner(f'Getting U.S. census data for San Francisco...'):
+  df = data.to_pandas()
   st.write('## Raw data:')
-  st.dataframe(data.collect())
+  st.dataframe(df)
 
+# display graph
 with st.spinner(f'Getting stats...'):
   st.write('# Total Population by Zip')
-  df = data.to_pandas()
+
+  # data to viz
   total_pop = df[['ZIP_CODE',
     'YEAR',
     'ttl_pop__est__ttl_pop__ttl_pop__ttl']]
-    # 'total_population__marginoferror__total_population__total_population__total']]
-  # st.bar_chart(total_pop, 'ZIP_CODE', ['YEAR', 'total_population__estimate__total_population__total_population__total'])
+
+  # create viz
+  # streamlit viz
+
+  # altair viz
   chart = alt.Chart(total_pop).mark_bar().encode(
     x='YEAR',
-    y=alt.Y('sum(ttl_pop__est__ttl_pop__ttl_pop__ttl)', title='Total Population'),
+    y=alt.X('sum(ttl_pop__est__ttl_pop__ttl_pop__ttl)', title='TOTAL POPULATION'),
     color='YEAR',
-    column='ZIP_CODE'
+    column=alt.Column('ZIP_CODE')
   )
 
   st.altair_chart(chart, use_container_width=False)
