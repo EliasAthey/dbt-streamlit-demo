@@ -18,6 +18,10 @@ sources:
         description: B01 values for the year 2019.
       - name: "2020_CBG_B01"
         description: B01 values for the year 2020.
+      - name: "2019_CBG_B02"
+        description: B02 values for the year 2019.
+      - name: "2020_CBG_B02"
+        description: B02 values for the year 2020.
   - name: postal
     description: San Francisco sample of postal codes and attributes (including census block group).
     database: "ZIP_Plus_4s__San_Francisco_CA_Area_EVALUATION"

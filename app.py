@@ -41,12 +41,12 @@ with st.spinner(f'Getting stats...'):
   df = data.to_pandas()
   total_pop = df[['ZIP_CODE',
     'YEAR',
-    'total_population__estimate__total_population__total_population__total']]
+    'estimate__total_population__total_population__total']]
     # 'total_population__marginoferror__total_population__total_population__total']]
   # st.bar_chart(total_pop, 'ZIP_CODE', ['YEAR', 'total_population__estimate__total_population__total_population__total'])
   chart = alt.Chart(total_pop).mark_bar().encode(
     x='YEAR',
-    y=alt.Y('sum(total_population__estimate__total_population__total_population__total)', title='Total Population'),
+    y=alt.Y('sum(estimate__total_population__total_population__total)', title='Total Population'),
     color='YEAR',
     column='ZIP_CODE'
   )
