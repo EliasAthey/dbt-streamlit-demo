@@ -1,4 +1,4 @@
-{% macro stage_census_table(tables) -%}
+{%- macro stage_census_table(tables) -%}
 
 with sources as (
     select
@@ -15,4 +15,4 @@ with sources as (
 )
 select * from sources
 
-{%- endmacro %}
+{%- endmacro -%}

@@ -25,28 +25,31 @@ db = sesh.get_current_database()
 schema = sesh.get_current_schema()
 role = sesh.get_current_role()
 
-st.write('# Hello! Welcome to my app')
-st.write(f'I\'m connected to the {acc} snowflake account.')
-st.write(f'By default, I\'m using the {wh} warehouse, the {role} role,\
+st.write('# San Francisco Census')
+st.write('## 2019 and 2020')
+st.write(f'FYI...I\'m connected to the {acc} snowflake account.\
+  By default, I\'m using the {wh} warehouse, the {role} role,\
   and the {db}.{schema} schema.')
 
 # get data
 data = sesh.table('san_francisco_census')
 
 # spinners are great for long operations
-with st.spinner(f'Getting raw data...'):
+with st.spinner(f'Getting us census data for San Francisco...'):
+  st.write('## Raw data:')
   st.dataframe(data.collect())
 
 with st.spinner(f'Getting stats...'):
+  st.write('# Total Population by Zip')
   df = data.to_pandas()
   total_pop = df[['ZIP_CODE',
     'YEAR',
-    'estimate__total_population__total_population__total']]
+    'ttl_pop__est__ttl_pop__ttl_pop__ttl']]
     # 'total_population__marginoferror__total_population__total_population__total']]
   # st.bar_chart(total_pop, 'ZIP_CODE', ['YEAR', 'total_population__estimate__total_population__total_population__total'])
   chart = alt.Chart(total_pop).mark_bar().encode(
     x='YEAR',
-    y=alt.Y('sum(estimate__total_population__total_population__total)', title='Total Population'),
+    y=alt.Y('sum(ttl_pop__est__ttl_pop__ttl_pop__ttl)', title='Total Population'),
     color='YEAR',
     column='ZIP_CODE'
   )

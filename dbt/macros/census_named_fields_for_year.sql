@@ -1,4 +1,4 @@
-{% macro census_named_fields_for_year(year) %}
+{%- macro census_named_fields_for_year(year) -%}
 
 {%- set field_model_ref='stg_census__block_group_fields_' ~ year %}
 {%- set model_ref='stg_census__block_groups_' ~ year %}
@@ -19,6 +19,6 @@ select
 from
     {{ref(model_ref)-}}
 
-{%- endif %}
+{%- endif -%}
 
-{%- endmacro %}
+{%- endmacro -%}
