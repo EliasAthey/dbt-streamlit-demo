@@ -33,12 +33,22 @@ with source as (
     'hispanic_or_latino': 'span_lat',
     'black_or_african_american': 'blck_afr',
     'white': 'wht',
-    'asian': 'asn'
+    'asian': 'asn',
+    'relationship': 'relatn',
+    'biological': 'bio',
+    'year': 'yr',
+    'excluding': 'xclud',
+    'household': 'hshld',
+    'partner': 'prtnr',
+    'in_2019_inflation-adjusted_dollars': '2019_inflt-adjstd',
+    'aggregate': 'agg',
+    'in_past_12_months': 'past_12_mo'
 }
 %}
 renamed as (
     select
         TABLE_ID as field_id,
+        right(
         {%- for i in range(replacements|length) %}
         replace(
         {%- endfor %}
@@ -50,6 +60,7 @@ renamed as (
         {%- for repl in replacements %}
         '{{repl}}','{{replacements[repl]}}'){% if not loop.last %},{% endif %}
         {%- endfor %}
+        , 255)
         as field_name
     from
         source

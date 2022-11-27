@@ -1,7 +1,7 @@
-{%- macro census_named_fields_for_year(year) -%}
+{%- macro census_named_fields_for_year(year, model) -%}
 
 {%- set field_model_ref='stg_census__block_group_fields_' ~ year %}
-{%- set model_ref='stg_census__block_groups_' ~ year %}
+{%- set model_ref=model %}
 
 {%- set fields_q %}
 select * from {{ref(field_model_ref)}}

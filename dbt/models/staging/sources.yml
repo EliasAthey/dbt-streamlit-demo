@@ -15,17 +15,19 @@ sources:
       - name: "2020_METADATA_CBG_FIELD_DESCRIPTIONS"
         description:  Field definitions for 2020 tables.
       - name: "2019_CBG_B01"
-        description: B01 values for the year 2019.
       - name: "2020_CBG_B01"
-        description: B01 values for the year 2020.
       - name: "2019_CBG_B02"
-        description: B02 values for the year 2019.
       - name: "2020_CBG_B02"
-        description: B02 values for the year 2020.
       - name: "2019_CBG_B03"
-        description: B03 values for the year 2019.
       - name: "2020_CBG_B03"
-        description: B03 values for the year 2020.
+      - name: "2019_CBG_B09"
+      - name: "2020_CBG_B09"
+      - name: "2019_CBG_B19"
+      - name: "2020_CBG_B19"
+      - name: "2019_CBG_B99"
+      - name: "2020_CBG_B99"
+      - name: "2019_CBG_C02"
+      - name: "2020_CBG_C02"
   - name: postal
     description: San Francisco sample of postal codes and attributes (including census block group).
     database: "ZIP_Plus_4s__San_Francisco_CA_Area_EVALUATION"
