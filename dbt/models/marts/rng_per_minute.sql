@@ -4,12 +4,11 @@
     )
 }}
 
-select * from
-    (values(
-        date_trunc('minute', current_timestamp(0)),
-        date_part('second', current_timestamp(0))
-        ) as v1(curr_minute, rng_value)
-    )
+select
+    date_trunc('minute', $1) as curr_minute,
+    normal(0, 1, random()) as rng_value
+from
+    (values (current_timestamp(0)) )
 
 {% if is_incremental() %}
 
