@@ -1,7 +1,16 @@
 version: 2
 
 sources:
+  - name: tweets
+    tags: ["twitter"]
+    description: Custom tweet ingestion from S3 using Snowpipe.
+    database: S3_TWEETS
+    schema: PUBLIC
+    tables:
+      - name: TWEETS
+        description: Tweets with id, text, keywords from stream, and created date.
   - name: census
+    tags: ["census"]
     description: Free marketplace dataset from SafeGraph - US Open Census Data & Neighborhood Insights. Provides census block group results.
     database: US_Open_Census_Data__Neighborhood_Insights__Free_Dataset
     schema: PUBLIC
@@ -27,6 +36,7 @@ sources:
       - name: "2020_CBG_B03"
         description: B03 values for the year 2020.
   - name: postal
+    tags: ["census"]
     description: San Francisco sample of postal codes and attributes (including census block group).
     database: "ZIP_Plus_4s__San_Francisco_CA_Area_EVALUATION"
     schema: PUBLIC

@@ -50,7 +50,7 @@ def main():
   sql_tbl = "create or replace table s3_tweets.public.json_tweets (data variant)"
   responses.append(sesh.sql(f'{sql_tbl}').collect())
 
-  # create table for raw tweets
+  # create pipe to ingest s3 tweets
   sql_pipe = """
   create or replace pipe s3_tweets.public.s3_tweets_pipe auto_ingest = true as
     copy into s3_tweets.public.json_tweets
@@ -58,6 +58,19 @@ def main():
     file_format = (type='JSON')
   """
   responses.append(sesh.sql(f'{sql_pipe}').collect())
+
+  # create view to format into raw source
+  sql_view = """
+  create or replace view s3_tweets.public.tweets as
+    select
+      data:data:id::string as id,
+      data:data:text::string as text,
+      data:keywords::string as keywords,
+      data:data:created_at::datetime as createddate,
+      data
+    from json_tweets
+  """
+  responses.append(sesh.sql(f'{sql_view}').collect())
 
   if len(responses) > 0:
     print(f'Responses:\n{responses}')
