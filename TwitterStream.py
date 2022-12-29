@@ -1,7 +1,6 @@
 import requests
 import os
 import json
-from dotenv import load_dotenv
 
 class TwitterStream:
     """
@@ -116,7 +115,7 @@ class TwitterStream:
         response = requests.get(
             endpoint, auth=self.bearer_oauth, stream=True,
         )
-        print(response.status_code)
+        print(f'STREAM CONNECTION STATUS: {response.status_code}')
         if response.status_code != 200:
             raise Exception(
                 "Cannot get stream (HTTP {}): {}".format(
