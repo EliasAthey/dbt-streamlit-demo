@@ -9,13 +9,13 @@ import altair as alt
 load_dotenv()
 
 connection = {
-      'user': getenv('SNOWFLAKE_USER')
-    , 'password': getenv('SNOWFLAKE_PASSWORD')
-    , 'account': getenv('SNOWFLAKE_ACCOUNT')
-    , 'role': getenv('SNOWFLAKE_ROLE')
-    , 'warehouse': getenv('SNOWFLAKE_WAREHOUSE')
-    , 'database': getenv('SNOWFLAKE_DATABASE')
-    , 'schema': getenv('SNOWFLAKE_SCHEMA')
+      'user': getenv('SNOWFLAKE_DBT_USER')
+    , 'password': getenv('SNOWFLAKE_DBT_PASSWORD')
+    , 'account': getenv('SNOWFLAKE_DBT_ACCOUNT')
+    , 'role': getenv('SNOWFLAKE_DBT_ROLE')
+    , 'warehouse': getenv('SNOWFLAKE_DBT_WAREHOUSE')
+    , 'database': getenv('SNOWFLAKE_DBT_DATABASE')
+    , 'schema': getenv('SNOWFLAKE_DBT_SCHEMA'),
 }
 
 sesh = Session.builder.configs(connection).create()
@@ -24,6 +24,7 @@ wh = sesh.get_current_warehouse()
 db = sesh.get_current_database()
 schema = sesh.get_current_schema()
 role = sesh.get_current_role()
+
 
 st.set_page_config(layout="wide")
 
