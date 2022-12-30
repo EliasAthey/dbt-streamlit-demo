@@ -1,14 +1,6 @@
 version: 2
 
 sources:
-  - name: tweets
-    tags: ["twitter"]
-    description: Custom tweet ingestion from S3 using Snowpipe.
-    database: S3_TWEETS
-    schema: PUBLIC
-    tables:
-      - name: TWEETS
-        description: Tweets with id, text, keywords from stream, and created date.
   - name: census
     tags: ["census"]
     description: Free marketplace dataset from SafeGraph - US Open Census Data & Neighborhood Insights. Provides census block group results.

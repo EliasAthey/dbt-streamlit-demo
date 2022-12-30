@@ -11,7 +11,8 @@ renamed as (
         id,
         text as tweet,
         keywords as labels,
-        createddate
+        createddate,
+        createddate as updated_at
     from
         source
 )

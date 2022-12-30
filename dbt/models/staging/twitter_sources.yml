@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: tweets
+    tags: ["twitter"]
+    description: Custom tweet ingestion from S3 using Snowpipe.
+    database: S3_TWEETS
+    schema: PUBLIC
+    loader: LOCAL_PYTHON
+    tables:
+      - name: TWEETS
+        description: Tweets with id, text, keywords from stream, and created date.
+        columns:
+          - name: ID
+            description: Unique identifier.
+            tests:
+              - not_null
+          - name: TEXT
+            description: UTF-8 text content.
+            tests:
+              - not_null
+          - name: KEYWORDS
+            description: English keywords used to filter the stream of tweets; separated by space.
+            tests:
+              - not_null
+          - name: CREATEDDATE
+            description: When tweet was created or edited.
+            tests:
+              - not_null
+          - name: DATA
+            description: Raw JSON from Twitter's FilteredStream API.
+            tests:
+              - not_null
