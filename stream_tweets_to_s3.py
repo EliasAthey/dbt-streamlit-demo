@@ -9,7 +9,7 @@ import os
 
 # main parameters, creds in .env
 KEYWORDS = [
-    "ai"
+    "ml"
 ]
 BUCKET = "twitter-stream"
 
